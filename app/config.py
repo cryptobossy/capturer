@@ -1,11 +1,10 @@
 import os
 from dotenv import load_dotenv
 from pathlib import Path
+from app.chat import amount, list_users
 # Load environment variables from .env file
 Path(".env").expanduser().resolve()
 load_dotenv()
-def dot(data:int):
-    return "."
 class Config:
     __TELEGRAM_BOT_TOKEN__ = os.getenv("TELEGRAM_TOKEN", "your_telegram_token_here")
     TELEGRAM_API_URL = f"https://api.telegram.org/bot{__TELEGRAM_BOT_TOKEN__}"
@@ -17,8 +16,8 @@ class Config:
         "default": SQLALCHEMY_DATABASE_URI}
     DEVELOPMENT = bool(os.getenv("DEVELOPMENT",True))
     ADMIN_COMMANDS = {
-        "/greet" : f"Saludos, administrador{dot}",
-        "/amount": f"Cantidad de usuarios registrados:",
-        "/list": f"Lista de usuarios registrados",
+        "/greet": lambda: "Saludos, administrador",
+        "/amount": amount,
+        "/list": list_users
     }
     ALLOWED_USERS = [ADMIN_CHAT_ID]
