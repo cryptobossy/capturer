@@ -20,7 +20,7 @@ class Config:
     DEVELOPMENT = bool(os.getenv("DEVELOPMENT",True))
     ADMIN_COMMANDS = {
         "/greet" : f"Saludos, administrador{dot}",
-        "/amount": f"Cantidad de usuarios registrados: {UserService.user_count()}{dot}",
-        "/list": f"Lista de usuarios registrados {send_user_list(ADMIN_CHAT_ID)}",
+        "/amount": f"Cantidad de usuarios registrados:",
+        "/list": f"Lista de usuarios registrados",
     }
     ALLOWED_USERS = [ADMIN_CHAT_ID]

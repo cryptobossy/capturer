@@ -1,5 +1,3 @@
-import os
-import csv
 from flask import Flask, request, jsonify
 from app.utils.message import send_telegram_message
 from app.config import Config

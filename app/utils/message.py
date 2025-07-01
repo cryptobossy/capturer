@@ -1,6 +1,6 @@
 import requests
-from app.config import Config
 def send_telegram_message(chat_id, text):
+    from app.config import Config
     try:
         url = f"https://api.telegram.org/bot{Config.__TELEGRAM_BOT_TOKEN__}/sendMessage"
         payload = {'chat_id': chat_id, 'text': text, 'parse_mode': 'HTML'}
