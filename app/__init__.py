@@ -1,5 +1,5 @@
 from .config import Config
-from .database import db
+from ...capturer.flask_app import db
 from .handler import Handlers
 __all__ = [
     'Config',
