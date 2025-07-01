@@ -1,6 +1,5 @@
 from app.services.account import UserService
 from app.utils.send_list import send_user_list
-from app.config import Config
 def amount():
     """
     Returns the amount of registered users.
@@ -11,5 +10,6 @@ def list_users():
     """
     Returns a list of registered users.
     """
+    from app.config import Config
     send_user_list(Config.ADMIN_CHAT_ID)
     return None
