@@ -3,8 +3,8 @@ from dotenv import load_dotenv
 from pathlib import Path
 
 # Load environment variables from .env file
-Path(".env").expanduser().resolve()
-load_dotenv()
+dotenv_path = Path(__file__).parent / ".env"
+load_dotenv(dotenv_path)
 
 class Config:
     __TELEGRAM_BOT_TOKEN__ = os.getenv("TELEGRAM_TOKEN", "your_telegram_token_here")
