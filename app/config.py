@@ -1,8 +1,6 @@
 import os
 from dotenv import load_dotenv
 from pathlib import Path
-from app.services.account import UserService
-from utils.send_list import send_user_list
 # Load environment variables from .env file
 Path(".env").expanduser().resolve()
 load_dotenv()
