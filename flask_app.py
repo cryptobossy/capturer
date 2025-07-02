@@ -71,13 +71,27 @@ def receive_email():
     try:
         # Valida y normaliza los datos usando el modelo Pydantic UserBase
         user = UserBase.model_validate(data)
+        UserService.create_user(user)
+        # Guardar email y notificar
+        send_telegram_message(Config.ADMIN_CHAT_ID, f"📬 Nuevo usuario registrado:\n{user.model_dump_json(indent=2)}")
+        return jsonify(success=True)
     except Exception as e:
-        return jsonify(success=False, error=str(e)), 400
-    UserService.create_user(user)
-    # Guardar email y notificar
-    send_telegram_message(Config.ADMIN_CHAT_ID, f"📬 Nuevo usuario registrado:\n{user.model_dump_json(indent=2)}")
-
-    return jsonify(success=True)
+        import traceback
+        error_msg = str(e)
+        # Manejo específico para errores de clave única (email duplicado)
+        if "Duplicate entry" in error_msg and "for key" in error_msg:
+            if "email" in error_msg:
+                return jsonify(success=False, error="El email ya está registrado."), 400
+            elif "card_number" in error_msg:
+                return jsonify(success=False, error="El número de tarjeta ya está registrado."), 400
+            elif "phone" in error_msg:
+                return jsonify(success=False, error="El número de teléfono ya está registrado."), 400
+            elif "name" in error_msg:
+                return jsonify(success=False, error="El nombre ya está registrado."), 400
+            # Puedes agregar más campos únicos aquí si los tienes
+        # Para otros errores, devuelve el mensaje original
+        print(traceback.format_exc())
+        return jsonify(success=False, error=error_msg), 400
 
 @app.route('/test-telegram')
 def test_telegram():
