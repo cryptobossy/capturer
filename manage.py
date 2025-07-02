@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_migrate import Migrate
 from app import Config
-from app.database import db
+from app.sql import db
 from app.database.account import UserDB
 
 import os

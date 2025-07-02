@@ -1,4 +1,4 @@
-from app.database import db
+from app.sql import db
 from manage import create_app
 from sqlalchemy import text
 

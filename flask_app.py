@@ -4,10 +4,10 @@ from app.config import Config
 from app.handler import Handlers
 from app.models import UserBase
 from app.services.account import UserService
-from flask_sqlalchemy import SQLAlchemy
+from app.sql import db
 app = Flask(__name__)
 app.config.from_object(Config)
-db = SQLAlchemy(app)
+db.init_app(app)
 @app.route('/')
 def home():
     return "Bot de Telegram funcionando!"

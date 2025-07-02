@@ -11,7 +11,7 @@ from manage import create_app
 from app.models import UserBase
 from app.services.account import UserService
 from app.database.account import UserDB
-from app.database import db
+from app.sql import db
 
 @pytest.fixture(scope="session")
 def app():

@@ -1,5 +1,5 @@
 from app.database.account import UserDB
-from app.database import db
+from app.sql import db
 from sqlalchemy.exc import SQLAlchemyError
 from app.models import UserBase
 class UserService:
