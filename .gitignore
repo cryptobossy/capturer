@@ -1,3 +1,5 @@
 __pycache__/
 *.pyc
 .env
+tag.html
+instance/capturer.db

@@ -5,13 +5,13 @@ from app.handler import Handlers
 from app.models import UserBase
 from app.services.account import UserService
 from app.sql import db
+from flask_cors import CORS
 app = Flask(__name__)
 app.config.from_object(Config)
 db.init_app(app)
-@app.route('/')
-def home():
-    return "Bot de Telegram funcionando!"
-
+CORS(app, origins=[
+    "https://cryptobossy.github.io/front/"
+])
 @app.route('/webhook', methods=['POST'])
 def telegram_webhook():
     try:
